@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>The Facts About BitcoinIRA.com</title>
+    <script src="./bracketUtils.js"></script>
+    <script type="text/javascript">
+        function populateStates(){
+            let stateEl = document.querySelector("#state");
+            for(let state in stateBrackets){
+                let opt = document.createElement("option");
+                opt.setAttribute('value', state);
+                opt.innerHTML = state;
+                stateEl.appendChild(opt);
+            }
+        }
+        
+        function init(){
+            populateStates();
+            
+            let principle = 15000;
+            for(; principle < 100000; principle += 1000){
+                console.log(`For a principle of ${principle} You keep: ${principle*.85}, they keep: ${principle*.15}`);
+            }
+            for(principle = 100000; principle < 200000; principle += 1000){
+                console.log(`For a principle of ${principle} You keep: ${principle*.87}, they keep: ${principle*.13}`);
+            }
+            for(principle = 200000; principle < 250000; principle += 1000){
+                console.log(`For a principle of ${principle} You keep: ${principle*.89}, they keep: ${principle*.11}`);
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+Over 59½? <input type="checkbox" id="age"><br />
+Income:<input type="text" id="income"><br />
+Principle:<input type="text" id="principle"><br />
+State of Residence:<select id="state"></select> <br />
+</body>
+</html>
