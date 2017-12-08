@@ -1,0 +1,17 @@
+.tooltip{
+    cursor: help;
+    text-decoration:underline;
+}
+
+.bciraTableRow{
+    text-align:center;
+}
+
+#infodump{
+    font-family:monospace;
+    font-size:15px;
+}
+
+#infoTable{
+    /*width:100%;*/
+}
