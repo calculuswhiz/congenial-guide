@@ -1,0 +1,15 @@
+Note sheet (disorganized):
+
+According to https://www.coindesk.com/traditional-iras-coming-world-bitcoin/:
+    BitcoinIRA charges a one-time upfront fee of 15% on deposits of $15,000–$100,000; 13% on $100,000–$200,000 placements and 11% on those $200,000 and above.
+This means a minimum charge of $2250.
+
+Traditional IRA:
+    - Income tax on withdrawal.
+    - Additional 10% penalty.
+    
+Roth IRA:
+    - Must wait 5 years before withdrawal, otherwise you are taxed. Additional 10% penalty.
+    - No income tax on withdrawal of princple only. For earnings, you are taxed. Additional 10% penalty on earnings.
+
+Cryptos do not pay out dividends -> No income source.
