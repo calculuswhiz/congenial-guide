@@ -1,3 +1,15 @@
+/* For the main page */
+.subtitle {
+    font-style: italic;
+}
+
+img.exhibition {
+    display:block;
+    margin: 0 auto;
+    border:1px solid #021a40;;
+}
+
+/*For the calculator */
 .tooltip{
     cursor: help;
     text-decoration:underline;
@@ -12,6 +24,16 @@
     font-size:15px;
 }
 
+#investorParams{
+    font-size:18px;
+}
+
 #infoTable{
-    /*width:100%;*/
+    border-width: 2px;
+    border-collapse: collapse;
+    border-style: inset;
+    border-color: blue;
+    display:block;
+    overflow-x: auto;
+    white-space: nowrap;
 }

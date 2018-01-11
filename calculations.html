@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>The Facts About BitcoinIRA.com</title>
-    <link rel="stylesheet" type="text/css" href="./basicStyles.css"></style>
+    <title>Expenditure Calculator</title>
+    <link rel="stylesheet" type="text/css" href="./basicStyles.css">
     <script src="./bracketUtils.js"></script>
     <script type="text/javascript">
         function populateStates(){
@@ -11,7 +11,7 @@
             for(let state in stateBrackets){
                 let opt = document.createElement("option");
                 opt.setAttribute('value', state);
-                opt.innerHTML = state;
+                opt.innerHTML = getStateFullName(state) + " (" + state.toUpperCase() + ")";
                 stateEl.appendChild(opt);
             }
         }
@@ -36,7 +36,7 @@
             let principle = parseFloat(document.getElementById("principle").value);
             let state = document.getElementById("state").value;
             
-            let actualPrinciple;
+            let requiredCostForPrinciple;
             
             if ( isNaN(preWithdraw) || isNaN(principle) ) {
                 alert("Please input values.")
@@ -45,40 +45,38 @@
             
             [...document.getElementsByClassName("bciraTableRow")].forEach(row=>row.remove());
             
+            document.getElementById("investorParams").innerHTML = `For a desired principle of <b>${principle}</b>, for income level of <b>${preWithdraw}</b>, filing as <b>${maritalStatus}</b> in state <b>${getStateFullName(state)}</b>...`;
+            
             if(0<principle && principle<15000){
+                requiredCostForPrinciple = -1;
                 document.getElementById("bciraCharge").innerHTML = "BitcoinIRA.com requires a minimum investment of 15000";
-                document.getElementById("bciraActualPrinciple").innerHTML = "";
-                actualPrinciple = -1;
             } else if (15000<=principle && principle < 100000){
-                document.getElementById("bciraCharge").innerHTML = (principle * .15).toFixed(2);
-                document.getElementById("bciraActualPrinciple").innerHTML = (principle * .85).toFixed(2);
-                actualPrinciple = (principle * .85).toFixed(2);
+                requiredCostForPrinciple = (principle / .85).toFixed(2);
+                document.getElementById("bciraCharge").innerHTML = requiredCostForPrinciple;
+            
             } else if (100000 <= principle && principle < 200000) {
-                document.getElementById("bciraCharge").innerHTML = (principle * .13).toFixed(2);
-                document.getElementById("bciraActualPrinciple").innerHTML = (principle * .87).toFixed(2);
-                actualPrinciple = (principle * .87).toFixed(2);
+                requiredCostForPrinciple = (principle / .87).toFixed(2);
+                document.getElementById("bciraCharge").innerHTML = requiredCostForPrinciple;
+            
             } else if (200000 <= principle) {
-                document.getElementById("bciraCharge").innerHTML = (principle * .11).toFixed(2);
-                document.getElementById("bciraActualPrinciple").innerHTML = (principle * .89).toFixed(2);
-                actualPrinciple = (principle * .89).toFixed(2);
+                requiredCostForPrinciple = (principle / .89).toFixed(2);
+                document.getElementById("bciraCharge").innerHTML = requiredCostForPrinciple;
+            
             } else {
+                requiredCostForPrinciple = -1;
                 document.getElementById("bciraCharge").innerHTML = "Ha, I wish.";
-                document.getElementById("bciraActualPrinciple").innerHTML = "";
-                actualPrinciple = -1;
             }
             
             let directBuyCost = principle * (1.0149);
             document.getElementById("bcTotalCost").innerHTML = directBuyCost.toFixed(2);
-            let gbtcCost = principle + 6.95;
-            document.getElementById("GBTCTotal").innerHTML = gbtcCost.toFixed(2);
 
-            if(actualPrinciple > 0){
+            if(requiredCostForPrinciple > 0){
                 for(let returns=0; returns<=50; returns+=1){
                     let tr = document.createElement("tr");
                     tr.setAttribute("class", "bciraTableRow");
                     
-                    let totalWorth = actualPrinciple * (returns/10+1);
-                    let earnings = actualPrinciple * returns/10;
+                    let totalWorth = principle * (returns/10+1);
+                    let earnings = principle * returns/10;
                     let fedRate = getFederalTaxRate(preWithdraw, maritalStatus);
                     let stateRate = getStateTaxRate(state, maritalStatus, preWithdraw);
                     let stateCGRate = getStateTaxRate(state, "longTermCG", 0);
@@ -86,38 +84,31 @@
                     let lostAmountAfter = earnings*(fedRate + stateRate);
                     let rothPrior = (totalWorth - lostAmountPrior)*.9;
                     let rothAfter = (totalWorth - lostAmountAfter) * .9;
-                    let tradPrior = (totalWorth - lostAmountPrior)*.9;
+                    let tradPrior = rothPrior;
                     let tradAfter = totalWorth - lostAmountPrior;
                     
-                    let coinBaseROI = (principle * (returns/10+1));
-                    let cbShortTermTaxed = coinBaseROI * (fedRate + stateRate);
+                    let coinBaseTotal = (principle * (returns/10+1));
+                    let cbShortTermTaxed = coinBaseTotal * (fedRate + stateRate);
                     let cbLongTermTaxed;
                     switch(fedRate){
                         case .1: case .15:
-                            cbLongTermTaxed = coinBaseROI * stateCGRate;
+                            cbLongTermTaxed = coinBaseTotal * stateCGRate;
                         break;
                         case .25: case .28: case .33: case .35:
-                            cbLongTermTaxed = coinBaseROI * (.15 + stateCGRate);
+                            cbLongTermTaxed = coinBaseTotal * (.15 + stateCGRate);
                         break;
                         case .396:
-                            cbLongTermTaxed = coinBaseROI * (.238 + stateCGRate);
+                            cbLongTermTaxed = coinBaseTotal * (.238 + stateCGRate);
                         break;
                     }
-                    let coinBaseShort = (coinBaseROI - cbShortTermTaxed) * (1-.0149);
-                    let coinBaseLong = (coinBaseROI - cbLongTermTaxed) * (1-.0149);
-                    
-                    let gbtcROI = coinBaseROI;
-                    let gbtcShortTermTaxed = cbShortTermTaxed;
-                    let gbtcLongTermTaxed = cbLongTermTaxed;
-                    let gbtcShort = gbtcROI - gbtcShortTermTaxed - 6.95;
-                    let gbtcLong = gbtcROI - gbtcLongTermTaxed - 6.95;
+                    let coinBaseShort = (coinBaseTotal - cbShortTermTaxed) * (1-.0149);
+                    let coinBaseLong = (coinBaseTotal - cbLongTermTaxed) * (1-.0149);
                     
                     let data = [`${Math.floor(returns/10*100)}`,
-                    `${totalWorth.toFixed(2)} (${getEarningsPct(totalWorth,principle)}%)`,
-                    `${rothPrior.toFixed(2)} (${getEarningsPct(rothPrior,principle)}%) / ${rothAfter.toFixed(2)} (${getEarningsPct(rothAfter,principle)}%)`,
-                    `${tradPrior.toFixed(2)} (${getEarningsPct(tradPrior,principle)}%) / ${tradAfter.toFixed(2)} (${getEarningsPct(tradAfter,principle)}%)`,
-                    `${coinBaseShort.toFixed(2)} (${getEarningsPct(coinBaseShort,directBuyCost)}%) / ${coinBaseLong.toFixed(2)} (${getEarningsPct(coinBaseLong,directBuyCost)}%)`,
-                    `${gbtcShort.toFixed(2)} (${getEarningsPct(gbtcShort,gbtcCost)}%) / ${gbtcLong.toFixed(2)} (${getEarningsPct(gbtcLong,gbtcCost)}%)`];
+                    `${totalWorth.toFixed(2)} (${getEarningsPct(totalWorth,requiredCostForPrinciple)}%)`,
+                    `${rothPrior.toFixed(2)} (${getEarningsPct(rothPrior,requiredCostForPrinciple)}%) / ${rothAfter.toFixed(2)} (${getEarningsPct(rothAfter,requiredCostForPrinciple)}%)`,
+                    `${tradAfter.toFixed(2)} (${getEarningsPct(tradAfter,requiredCostForPrinciple)}%)`,
+                    `${coinBaseShort.toFixed(2)} (${getEarningsPct(coinBaseShort,directBuyCost)}%) / ${coinBaseLong.toFixed(2)} (${getEarningsPct(coinBaseLong,directBuyCost)}%)` ];
                     populateRow(tr, data);
                     document.getElementById("infoTable").appendChild(tr);
                 }
@@ -127,6 +118,7 @@
                 populateRow(tr, ["Error"]);
                 document.getElementById("infoTable").appendChild(tr);
             }
+            document.getElementById("infodump").scrollIntoView(true);
         }
         
         function init(){
@@ -135,33 +127,31 @@
     </script>
 </head>
 <body onload="init()">
-<!-- Over 59½? <input type="checkbox" id="age"><br> -->
-<!-- Holding for over a year? <input type="checkbox" id="shortTerm"><br> -->
 Note: this page uses ES6. If the page isn't working, try using Firefox, Chrome, etc.<br>
-File as joint? <input type="checkbox" id="joint"> <br>
-Pre-withdrawal income:<input type="text" id="income" value="0"><br>
-Principle (min 15000):<input type="text" id="principle" value="0"><br>
+File as joint (leave unchecked if single)? <input type="checkbox" id="joint"> <br>
+Pre-withdrawal income (your base yearly income):<input type="text" id="income" value="0"><br>
+Desired Principle (min 15000):<input type="text" id="principle" value="0"><br>
 State of Residence:<select id="state"></select> <br>
 <button onclick="fillInfo()">Calculate</button> <br>
-Calculations <br>
-- Assumes all earnings are in excess of your current bracket <br>
-- Ignores $100/yr holding charge.
-<h2><font color="red"><b>BitcoinIRA.com Investment Comparison Chart:</b></font></h2>
+<hr>
 <div id="infodump">
-    <b class="tooltip" title="They charge 15%->[15k-100k), 13%->[100k-200k), 11%->[200k,)">Amount kept by Bitcoin IRA:</b> <span id="bciraCharge"></span> <br>
-    <b class="tooltip" title="This is how much your account actually starts with.">Amount you actually invest:</b> <span id="bciraActualPrinciple"></span> <br>
-    <b class="tooltip" title="How much it costs to buy that much bitcoin from CoinBase (1.49% fee)">CoinBase Buying cost:</b> <span id="bcTotalCost"></span> <br>
-    <b class="tooltip" title="How much it costs to buy that many shares of GBTC via TD Ameritrade">TD Ameritrade GBTC investment cost:</b> <span id="GBTCTotal"></span><br>
+    <h2><font color="red"><b>Bitcoin "Investment" Expenditure Comparison Chart:</b></font></h2>
+    <div id="investorParams">Tell me about yourself...</div>
+    <b class="tooltip" title="They charge 15%->[15k-100k), 13%->[100k-200k), 11%->[200k,)">Bitcoin IRA cost:</b> <span id="bciraCharge"></span> <br>
+    <b class="tooltip" title="How much it costs to buy that much bitcoin from CoinBase (1.49% for buying and selling)">CoinBase Buying cost:</b> <span id="bcTotalCost"></span> <br>
     <table id="infoTable" border="1">
         <tr>
-            <th class="tooltip" title="How much the price of Bitcoin goes up.">% Price Up:</th>
-            <th class="tooltip" title="How much the account is worth at the end.">Net Price @ End:</th>
-            <th class="tooltip" title="If you withdraw from a Roth IRA before retirement, this is what the account is worth.">Pre-retire Roth - Before/After 5 years:</th>
-            <th class="tooltip" title="If you withdraw from a Traditional IRA, this is what the account is worth.">Traditional - Before/After retire:</th>
-            <th class="tooltip" title="Using your bank account to buy and sell bitcoin on CoinBase (1.49% buy and sell fee)">CoinBase Short/Long term</th>
-            <th class="tooltip" title="Buying GBTC through TD Ameritrade (6.95 buy/sell fees). Note that this is approximate and obeys open/close times for the exchange">GBTC @ TDAmeritrade Short/Long</th>
+            <th class="tooltip" title="Percent returns BTC.">BTC ROI%</th>
+            <th class="tooltip" title="How much the principle is worth at the end. Also how much you make with a Roth IRA at full maturity.">Final Amount</th>
+            <th class="tooltip" title="If you withdraw from a Roth IRA before retirement, this is what the account is worth before and after the 5 year wait time (Bitcoin IRA)">BCIRA Roth B/A 5 years</th>
+            <th class="tooltip" title="If you withdraw from a Traditional IRA, this is what the account is worth after retirement (Bitcoin IRA)">BCIRA Trad After retire</th>
+            <th class="tooltip" title="Using your bank account to buy and sell bitcoin on CoinBase, with short/long-term capital gain tax (CoinBase)">CoinBase Short/Long CG Tax</th>
         </tr>
     </table>
 </div>
+<b>Notes:</b><br>
+- Assumes all earnings are in excess of your current bracket. Does not account for whether withdrawal will exceed next income bracket.<br>
+- Ignores BCIRA's $100/yr holding fee.<br>
+- Short and long term capital gains refer to how long you hold the asset for. The cutoff for "short-term" is at 1 year.<br>
 </body>
 </html>
