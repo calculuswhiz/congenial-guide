@@ -4,32 +4,48 @@
     <meta charset="utf-8">
     <title>The Facts About Bitcoin IRA, Inc.</title>
     <link rel="stylesheet" type="text/css" href="./basicStyles.css">
+    <script type="text/javascript">
+        function init(){
+            let toc = document.getElementsByClassName("contentList")[0];
+            
+            let headers = document.getElementsByTagName("h3");
+            let ctr = 0;
+            for(let header of headers){
+                let title = header.innerHTML;
+                let anchor = document.createElement('a');
+                anchor.setAttribute('name', title);
+                header.appendChild(anchor);
+                
+                let item = document.createElement('li');
+                let link = document.createElement('a');
+                link.setAttribute('href', '#'+title);
+                link.innerHTML = title;
+                item.appendChild(link);
+                toc.appendChild(item);
+            }
+        }
+    </script>
 </head>
-<body bgcolor="Beige">
+<body bgcolor="Beige" onload="init()">
 <center><h1>The Facts about Bitcoin IRA, Inc.</h1>
 <div class="subtitle">An in-depth analysis on why you should stay far away from this organization</div>
 </center>
 <h3>Preface</h3>
-<p>When I first heard of Bitcoin IRA, Inc, it was when I was watching Youtube on my phone. "This has to be some kind of joke," I thought, but sadly, no, it wasn't. This is a real company that wants you to pay real money to buy an extremely volatile asset with your long-term investment using their services. And they're mass-advertising it to the general public.</p>
-<p>But first some questions for you to consider:</p>
-<ul>
-    <li>Are they convincing people to do this? If so, how?</li>
-    <ul>
-        <li>Who are they trying to market to?</li>
-        <li>What are they telling the general public?</li>
-        <li>What are they hiding?</li>
-        <li>What's in it for them?</li>
-    </ul>
-    <li>Is it a ruse, and if so, how elaborate of a ruse is it?</li>
-</ul>
+<p>When I first heard of Bitcoin IRA, Inc, it was when I was watching Youtube on my phone. "This has to be some kind of joke," I thought, but sadly, no, it wasn't. This is a real company that wants you to pay real money to buy an extremely volatile asset with your long-term retirement funds using their services. And they're mass-advertising it to the general public.</p>
+
 <h3>Motivation</h3>
 <p>Let's get this out of the way first. I am a value investor <sub>(in training)</sub>, which means I look for things that I think are undervalued and invest in them. Therefore, the question I have to ask myself before I buy anything is, "Do I have a good, rational reason to buy it?" As a corollary of that, "Is this thing worth more than what I am paying?"</p>
-<p>The reason I state this is that, honestly speaking, it means that I have a bias against Bitcoin and cryptocurrency investment in itself. So I do not think Bitcoin is a good investment idea as of right now, and I do not think that Bitcoin is worth over $10K per coin. Some of that bias may come out, so if you find that upsetting, please let me direct you to this <a href="https://html5zombo.com/">site</a>. But for what it's worth, this project isn't about that. I will not tell you to buy or not buy Bitcoin. That decision is yours to make.</p>
-<p>I will, however, attempt to convince you that investing using Bitcoin IRA, Inc. is a terrible decision for you if you do decide to invest in Bitcoin.</p>
+<p>The reason I state this is that, honestly speaking, it means that I have a bias against Bitcoin and cryptocurrency investment in itself. So I do not think Bitcoin is a good investment idea as of right now, and I do not think that Bitcoin is worth over $10K per coin. Some of that bias may come out, so if you find that upsetting, please let me direct you to this <a href="https://html5zombo.com/">site</a>. But for what it's worth, this project isn't about that. I will not tell you to buy or not buy Bitcoin. That decision is yours to make. I'm not writing this article because I hate Bitcoin, but rather because I do not want to see innocent people hurt by another corporation.</p>
+
+<div class="toc">
+    Table of Contents:
+    <ul class="contentList"></ul>
+</div>
+
 <h3>The Investigation</h3>
 <p>So, let's take a look at their website, <a href="http://bitcoinira.com" target="_blank">http://bitcoinira.com</a>:</p>
 <img class="exhibition" src="./img/BitcoinIRAoverview.png" class="snapshot">
-<p>At first glance, it looks professional and modern. At least they got the visuals right. They have a neat, avant-garde logo and diagram showing the Bitcoin and Ethereum logos and a dollar sign. I'm not sure what it means, though, but it looks neat, kind of like how really venomous spiders look cool.</p>
+<p>At first glance, it looks professional and modern. At least they got the visuals right. They have a neat, sleek logo and background image showing the Bitcoin and Ethereum logos and a dollar sign. I'm not sure what it means, though, but it looks neat, kind of like how really venomous spiders look cool.</p>
 
 <h4>Problem #1: Abusing Outside Quotes</h4>
 <p>Anyway, let's look at that blurb at the bottom there. It's really a slider with the following three messages:</p>
@@ -37,14 +53,14 @@
 <p>These all are quite vacuous, but the one I want to call your attention to is number 2: the Investopedia quote. This is really quite a clever little trick:
 <ul>
     <li>Investopedia is a fairly reliable source of information. (Dumb people like me use it to look up things we don't understand.)</li>
-    <li>Since it is a quote, Bitcoin IRA, Inc. is not liable for false advertising. I looked on other parts of their site. They never claim this themselves, either. For example, at the top they say that they are "IRS-compliant." What does this all mean? Well...</li>
+    <li>Since it is a quote, Bitcoin IRA, Inc. is not liable for false advertising. I looked on other parts of their site. They never claim this themselves, either. For example, at the top they say that they are "IRS-compliant" instead. What does this all mean? Well...</li>
     <li>Let's look at the statement, "Approved by the IRS." Note that it does not say <i>endorsed</i> by. All this is really saying is, "We're following the IRS regulations." However, I get the feeling that's not what they want you to believe. Why else would they put that there if they've already said it? Don't be fooled.</li>
 </ul>
 </p>
 <p> The IRS published a <a href="https://www.irs.gov/pub/irs-pdf/p3125.pdf">document</a> declaring at the very top:</p>
 <img class="exhibition" src="./img/IRSMessage.png" title="Quite the eye-opener, no?">
 <p>I encourage you to read this for yourself.</p>
-<p>So, really what this quote is saying is, "This is the first organization that you can buy Bitcoin directly with using your retirement funds. Yay, us. We're technically following the law with the Risks and Disclosures article."</p>
+<p>So, really the only reason they could have put the quote there is to say, "This is the first organization that you can buy Bitcoin directly with using your retirement funds. Yay, us. We're technically following the law with the Risks and Disclosures statement."</p>
 
 <h4>Problem #2: Worthless Reviews</h4>
 <p>Scrolling down a bit further, we see the following:</p>
@@ -53,16 +69,16 @@
 
 <p>Again, not saying Bitcoin is bad. I'm just saying that an investor should always have a good reason to buy something. Otherwise, it's just gambling, and you might as well just go to a casino for a night. In the case of many, it's gambling with their futures, or worse, their children and loved ones.</p>
 
+<p>The only thing you can probably tell from the reviews about Bitcoin IRA is that the customer service is good. What the reviews don't tell you is whether or not this company is trustworthy or why switching to this company is a good idea. This is not a restaurant. Customer service is a secondary issue.</p>
+
 <p><i>By the way, BirdEye is just a combination of the Facebook and Google reviews. That third link is just padding, like on my old college resume when I thought "Manga Translator" was a good thing to put on there. Stupid old me.</i></p>
 
 <h4>Problem #3: The Ebook</h4>
 <p>Next on the page, we see this:</p>
 <img class="exhibition" src="./img/Ebook.png">
-<p>First of all, it's actually one of those things where you have to give them your email to get to the download. Second, it's not an ebook. It's an 11-page landscape-oriented brochure. See that book on the right? It's not real. Here's the <a href="http://secured.bitcoinira.com/acton/ct/29829/s-00c3-1711/Bct/l-0001/l-0001:1f3a5/ct1_0/1?sid=TV2%3AzTNxs5iip" target="_blank">link</a>, so you don't have to give them your email. See for yourself. (If that link goes down, <a href="./evidence/c93d8ff3-4ea4-4e8f-b8d5-987555366c0e.pdf">here</a>'s my copy of the file.)</p>
+<p>First of all, it's actually one of those things where you have to give them your email to get to the download. Now I'm getting emails from their staff (which they really need to spell check). I'll show you a few of them for your viewing pleasure at the end. Second, it's not an ebook. It's an 11-page landscape-oriented brochure. See that book on the right? It's not real. Here's the <a href="http://secured.bitcoinira.com/acton/ct/29829/s-00c3-1711/Bct/l-0001/l-0001:1f3a5/ct1_0/1?sid=TV2%3AzTNxs5iip" target="_blank">link</a>, so you don't have to give them your email. See for yourself. (If that link goes down, <a href="./evidence/c93d8ff3-4ea4-4e8f-b8d5-987555366c0e.pdf">here</a>'s my copy of the file.)</p>
 
-<p>Ok, but what's actually wrong with it? I've made an annotated <a href="./evidence/annotated.pdf" target="_blank">copy</a> of the pdf local on my repo. Keep it open and read through it when you're done reading this page.</p>
-
-<p>Now I'm getting emails from their staff (which they really need to spell check). Hooray. I'll show you a few of them for your viewing pleasure at the end.</p>
+<p>Ok, but about its contents? I've made an annotated <a href="./evidence/annotated.pdf" target="_blank">copy</a> of the pdf local on my repo. Keep it open, and read through it when you're done reading this page.</p>
 
 <h4>Problem #4: Clickbait</h4>
 <p>Near the bottom, I saw this article a while ago (<a href="https://bitcoinira.com/articles/gartners-hype-cycle-proves-bitcoin-not-bubble" target="_blank">link</a>):</p>
@@ -78,7 +94,7 @@
     <li>It does not account for technologies that are accepted with little resistance, like the smartphone.</li>
 </ul>
 Tell me again how this subjective, overly simple model proves anything? All this article serves to do is tell you that Bitcoin is guaranteed to go up, therefore you should use Bitcoin IRA Inc. Never mind that so far, they haven't provided a single good reason for why I should use their services to invest in Bitcoin. I had to dig around to actually find it. The reasons they give are simplicity, security, and no tax on capital gains.</p>
-<p>Ok, first, it's not that hard to buy BitCoin. Second, fine, I'll admit it offers a little more security... for Bitcoin... which they're claiming is already secure. Third, with regard to the no capital gains tax, I'll break that down next...</p>
+<p>Ok, first, it's not that hard to buy Bitcoin. Second, fine, I can't refute that it offers a little more security... for Bitcoin... which they're claiming is already secure. Third, with regard to the no capital gains tax, I'll break that down next...</p>
 
 <h4>Problem #5: The Hidden Cost</h4>
 <p>So if all the deceptive practices listed above are not enough to convince you, let me ask you a question: How much is 15%? Why? Because Bitcoin IRA charges the following fees when you deposit into your account:</p>
@@ -96,7 +112,7 @@ Tell me again how this subjective, overly simple model proves anything? All this
 <img class="exhibition" src="./img/InputFields.png">
 <p>And we get a cool table:</p>
 <img class="exhibition" src="./img/Table1.png">
-<p>Analyzing this data, the evidence is clear. Since I am under 59½ by a significant margin, I will probably (over 95% sure) profit more from buying BTC from CoinBase myself if it goes up, even with capital gains taxes, short- or long-term. If I strongly believed that BTC would go up, there would be no reason for me to start the IRA, unless I also believed that BTC would go up <i>and</i> stay up by the time I retire, which is more than three decades from now. Fifteen percent is a killer.</p>
+<p>Analyzing this data, the evidence is clear. Since I am under 59½ by a significant margin, I will probably profit more from buying Bitcoin from CoinBase myself if it goes up, even with capital gains taxes, short- or long-term. If I strongly believed that Bitcoin would go up, there would be no reason for me to start the IRA unless I also believed that Bitcoin would also stay up by the time I retire, which is more than three decades from now. For a high-risk investment, this is not worth the cost. Fifteen percent is a killer. It would be slightly less of a rip-off if they let you diversify, but they don't. It's just cryptocurrencies. (No, I don't count buying other cryptocurrencies as "diversifying.")</p>
 
 <h3>Conclusion</h3>
 <p>Bottom line: do not give your money to this company. They either don't know what they are talking about, or they're trying to lull you into a false sense of security. Everything on the site, with the exception of the risks and disclosures page, is trying to convince you that:
@@ -104,13 +120,13 @@ Tell me again how this subjective, overly simple model proves anything? All this
     <li>Bitcoin is a safe investment and that it will only go up in value.</li>
     <li>It's better to get in now before you miss out. (This is called "Fear of Missing Out".)</li>
     <li>It's a complicated process to buy Bitcoin.</li>
-    <li>Since it is such a safe investment, you should commit to the long-term.</li>
+    <li>Since it is such a safe investment, you should commit long-term.</li>
     <li>Since it's also complicated, you should trust Bitcoin IRA, Inc. to handle your money for you. It's 100% safe, guaranteed.</li>
 </ul>
-...And all the while they aren't really making any of these guarantees as a company, so they can't be held legally responsible. The Gartner cycle article, for example, was written by some person, and is just their opinion. It wouldn't surprise me if somebody on their staff wrote it.</p>
-<p>If you want to invest in Bitcoin, buy it yourself. If you really want it in your IRA, I'd look into GBTC, which trades like a stock. It may have a high premium, but you also sell at a premium. You also don't have to pay brokerages like TD Ameritrade 15% of your money to buy it. That's a plus. In the future, other companies may even open similar cryptocurrency derivative trading alternatives. As if I even really need to say this again, <strong>"Don't use this service."</strong></p>
+...And all the while they aren't really making any of these guarantees as a company, so they can't be held legally responsible. The Gartner cycle article, for example, was written by some person, and is just that person's opinion.</p>
+<p>If you want to use Bitcoin to make money, buy it yourself. If you really want it in your IRA, I'd look into GBTC, which trades like a stock. It may have a high premium, but you also sell at a premium. You also don't have to pay brokerages like TD Ameritrade 15% of your money to buy it. That's a plus. In the future, other companies may even open similar cryptocurrency derivative trading alternatives. As if I even really need to say this again, <strong>"Don't start a Bitcoin IRA."</strong></p>
 
-<h3>Appendix:</h3>
+<h3>Appendix A</h3>
 <p>Here are a few of the more entertaining emails they sent to me.</p>
 
 <p>The first email they sent:</p>
@@ -138,6 +154,13 @@ Tell me again how this subjective, overly simple model proves anything? All this
 <p>Another case where they advertise Bitcoin itself, not their company:</p>
 
 <img src="img/Emails/TwoFools.png" class="exhibition">
+
+<h3>Appendix B</h3>
+<p>Wow, I can't believe I found <a href="https://account.bitcoinira.com/register/thankyou/?">this</a>. I think this alone would have been enough reasons not to trust these people.</p>
+
+<img src="img/Security.png" class="exhibition">
+
+<p>Every idiot knows you're not supposed to give your users debugging output for your servers! But at least they locked down their <a href="https://account.bitcoinira.com/CFIDE/">CFIDE</a> folder. Still, this is a big no-no in deployment. Debugging output is something you have to actually turn on too. As in, it's turned off by default. Amateurs.</p>
 
 <footer>Page maintained on Github by Calculuswhiz. Last updated Jan 2018</footer>
 

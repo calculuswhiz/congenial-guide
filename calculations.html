@@ -122,12 +122,17 @@
         }
         
         function init(){
-            populateStates();
+            try {
+                new Function("(a = 0) => a");
+                populateStates();
+            }
+            catch (err) {
+                document.body.innerHTML = "This page uses ES6. Your browser is not supported.";
+            }
         }
     </script>
 </head>
 <body onload="init()">
-Note: this page uses ES6. If the page isn't working, try using Firefox, Chrome, etc.<br>
 File as joint (leave unchecked if single)? <input type="checkbox" id="joint"> <br>
 Pre-withdrawal income (your base yearly income):<input type="text" id="income" value="0"><br>
 Desired Principle (min 15000):<input type="text" id="principle" value="0"><br>
